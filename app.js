@@ -8,7 +8,8 @@ var express = require('express')
   , http = require('http')
   , net = require('net')
   , bert = require('node-bertrpc/src/bert.js')
-  , path = require('path');
+  , path = require('path')
+  , redis = require('redis');
 
 var app = express();
 
@@ -30,10 +31,13 @@ app.configure('development', function() {
 });
 
 app.get('/', routes.index);
+app.get('/stream', routes.stream);
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log("Express server listening on port " + app.get('port'));
 });
+
+var publisher = redis.createClient();
 
 net.createServer(function(sock) {
   sock.setEncoding('binary');
@@ -48,6 +52,7 @@ net.createServer(function(sock) {
       var raw = data.toString('binary')
         , term = bert.decode(raw);
 
+      publisher.publish('updates', JSON.stringify(term));
       console.log(term);
     } catch (err) {
       console.error(err);
