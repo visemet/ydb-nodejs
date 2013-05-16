@@ -9,7 +9,7 @@ var express = require('express')
   , net = require('net')
   , bert = require('node-bertrpc/src/bert.js')
   , path = require('path')
-  , redis = require('redis');
+  , redis = require('heroku-redis-client');
 
 var app = express();
 

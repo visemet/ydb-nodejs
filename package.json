@@ -9,6 +9,6 @@
     "express": "3.0.5",
     "jade": "*",
     "node-bertrpc": "git://github.com/visemet/node-bertrpc#master",
-    "redis": "*"
+    "heroku-redis-client" : "*"
   }
 }
