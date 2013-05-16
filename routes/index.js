@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-var redis = require('redis');
+var redis = require('heroku-redis-client');
 
 /*
  * GET home page.
