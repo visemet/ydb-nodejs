@@ -15,7 +15,13 @@ var publisher = redis.createClient();
 exports.load = function(req, res) {
   var demoNo = req.params.no;
 
-  res.render('index', { title: 'YoctoDB' });
+  res.render('demo', {
+    title: 'YoctoDB'
+  , scripts: [
+      '/javascripts/live-graph-' + demoNo + '.js'
+    , '/javascripts/data-stream-' + demoNo + '.js'
+    ]
+  });
 };
 
 /*
