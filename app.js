@@ -5,11 +5,11 @@
 
 var express = require('express')
   , routes = require('./routes')
+  , demos = require('./routes/demo')
+  , streams = require('./routes/stream')
   , http = require('http')
   , net = require('net')
-  , bert = require('node-bertrpc/src/bert.js')
-  , path = require('path')
-  , redis = require('heroku-redis-client');
+  , path = require('path');
 
 var app = express();
 
@@ -31,36 +31,12 @@ app.configure('development', function() {
 });
 
 app.get('/', routes.index);
-app.get('/stream', routes.stream);
+
+app.get('/demo/:no', demos.load);
+app.get('/demo/:no/stream', streams.load);
+
+app.post('/demo/:no', demos.update);
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log("Express server listening on port " + app.get('port'));
 });
-
-var publisher = redis.createClient();
-
-net.createServer(function(sock) {
-  sock.setEncoding('binary');
-
-  // We have a connection - a socket object is assigned to the
-  // connection automatically
-  console.log("CONNECTED: " + sock.remoteAddress + ":" + sock.remotePort);
-
-  // Add a 'data' event handler to this instance of socket
-  sock.on('data', function(data) {
-    try {
-      var raw = data.toString('binary')
-        , term = bert.decode(raw);
-
-      publisher.publish('updates', JSON.stringify(term));
-      console.log(term);
-    } catch (err) {
-      console.error(err);
-    }
-  });
-
-  // Add a 'close' event handler to this instance of socket
-  sock.on('close', function(data) {
-    console.log("CLOSED: " + sock.remoteAddress + " " + sock.remotePort);
-  });
-}).listen(2158);
