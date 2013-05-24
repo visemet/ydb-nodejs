@@ -4,5 +4,11 @@ block content
   #container
 
 block append scripts
-  each script in scripts
-    script(src=script)
+  script(src='//code.highcharts.com/stock/highstock.js')
+  script(src='//code.highcharts.com/stock/modules/exporting.js')
+
+  script
+    $(document).ready((!{chart})(JSON.parse('!{JSON.stringify(chartOptions)}')))
+
+  script
+    $(document).ready(!{chartUpdate}())
