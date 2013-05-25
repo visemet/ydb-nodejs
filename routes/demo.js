@@ -31,6 +31,9 @@ function getChartOptions(demoNo) {
   case '1':
     options = chartOptions1();
     break;
+  case '2':
+    options = chartOptions2();
+    break;
   }
 
   return options;
@@ -39,7 +42,9 @@ function getChartOptions(demoNo) {
 function getChartUpdate(demoNo) {
   switch(demoNo) {
   case '1':
-    return  chartUpdate1();
+    return chartUpdate1();
+  case '2':
+    return chartUpdate2();
   }
 }
 
@@ -77,6 +82,45 @@ function chartOptions1() {
   };
 };
 
+function chartOptions2() {
+  return {
+    rangeSelector: {
+      buttons: [
+        {
+          count: 30
+        , type: 'minute'
+        , text: '30m'
+        }
+      , {
+          count: 1
+        , type: 'hour'
+        , text: '1h'
+        }
+      , {
+          count: 2
+        , type: 'hour'
+        , text: '2h'
+        }
+      , {
+          type: 'all'
+        , text: 'All'
+        }
+      ]
+    , inputEnabled: false
+    , selected: 0
+    }
+  , title: {
+      text: 'Demo #2'
+    }
+  , series: [
+      {
+        name: 'Electricity usage (kWh)'
+      , data: []
+      }
+    ]
+  };
+};
+
 function chartUpdate1() {
   return function() {
     var source = new EventSource(window.location.pathname + '/stream')
@@ -91,6 +135,26 @@ function chartUpdate1() {
 
         chart.series[0].addPoint([timestamp, watts], true, false, false);
       });
+    }, false);
+  };
+}
+
+function chartUpdate2() {
+  return function() {
+    var source = new EventSource(window.location.pathname + '/stream')
+      , chart = window.chart;
+
+    source.addEventListener('message', function(e) {
+      var data = JSON.parse(e.data);
+
+      data.forEach(function(datum) {
+        var timestamp = datum[1] / 1e3 // convert to milliseconds
+          , watts = datum[2][0];
+
+        chart.series[0].addPoint([timestamp, watts], false, false, false);
+      });
+
+      chart.redraw();
     }, false);
   };
 }

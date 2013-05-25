@@ -3,7 +3,7 @@ exports.make = function(options) {
 
   Highcharts.setOptions({
     global : {
-      useUTC : false
+      useUTC : true
     }
   });
 
