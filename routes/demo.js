@@ -4,8 +4,7 @@
  */
 
 var redis = require('heroku-redis-client')
-  , bert = require('node-bertrpc/src/bert.js')
-  , chart = require('../chart.js');
+  , bert = require('node-bertrpc/src/bert.js');
 
 var publisher = redis.createClient();
 
