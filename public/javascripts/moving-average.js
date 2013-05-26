@@ -60,7 +60,26 @@ $(function() {
   , series: [
       {
         name: 'Electricity usage (kWh)'
+      , type: 'area'
       , data: []
+      , gapSize: 5
+      , tooltip: {
+          valueDecimals: 0
+        }
+
+      , fillColor: {
+          linearGradient: {
+            x1: 0
+          , y1: 0
+          , x2: 0
+          , y2: 1
+          }
+
+        , stops: [
+            [0, Highcharts.getOptions().colors[0]]
+          , [1, 'rgba(0,0,0,0)']
+          ]
+        }
       }
     ]
   });

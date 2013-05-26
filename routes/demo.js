@@ -25,7 +25,10 @@ exports.load = function(req, res) {
 function getScripts(demoNo) {
   switch(demoNo) {
   case '1':
-    return ['/javascripts/moving-average.js'];
+    return [
+      '/javascripts/gray-visual-theme.js'
+    , '/javascripts/moving-average.js'
+    ];
   }
 }
 
