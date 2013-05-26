@@ -54,13 +54,158 @@ $(function() {
     }
 
   , exporting: {
-      enabled: false
+      enabled: true
+    }
+
+  , yAxis: {
+      plotLines: [
+        {
+          value: 190
+        , color: 'purple'
+        , dashStyle: 'shortdash'
+        , width: 2
+        , label: {
+            text: 'Fridge freezer'
+          , align: 'right'
+          , style: {
+              color: 'white'
+            , fontWeight: 'bold'
+            }
+          }
+        }
+      , {
+          value: 155
+        , color: 'purple'
+        , dashStyle: 'shortdash'
+        , width: 2
+        , label: {
+            text: 'Upright freezer'
+          , align: 'right'
+          , style: {
+              color: 'white'
+            , fontWeight: 'bold'
+            }
+          }
+        }
+      , {
+          value: 1000
+        , color: 'purple'
+        , dashStyle: 'shortdash'
+        , width: 2
+        , label: {
+            text: 'Iron'
+          , align: 'right'
+          , style: {
+              color: 'white'
+            , fontWeight: 'bold'
+            }
+          }
+        }
+      , {
+          value: 2000
+        , color: 'purple'
+        , dashStyle: 'shortdash'
+        , width: 2
+        , label: {
+            text: 'Vacuum'
+          , align: 'right'
+          , style: {
+              color: 'white'
+            , fontWeight: 'bold'
+            }
+          }
+        }
+      , {
+          value: 124
+        , color: 'purple'
+        , dashStyle: 'shortdash'
+        , width: 2
+        , label: {
+            text: 'TV 1'
+          , align: 'right'
+          , style: {
+              color: 'white'
+            , fontWeight: 'bold'
+            }
+          }
+        }
+      , {
+          value: 2400
+        , color: 'purple'
+        , dashStyle: 'shortdash'
+        , width: 2
+        , label: {
+            text: 'Hob'
+          , align: 'right'
+          , style: {
+              color: 'white'
+            , fontWeight: 'bold'
+            }
+          }
+        }
+      , {
+          value: 2125
+        , color: 'purple'
+        , dashStyle: 'shortdash'
+        , width: 2
+        , label: {
+            text: 'Oven'
+          , align: 'right'
+          , style: {
+              color: 'white'
+            , fontWeight: 'bold'
+            }
+          }
+        }
+      , {
+          value: 1250
+        , color: 'purple'
+        , dashStyle: 'shortdash'
+        , width: 2
+        , label: {
+            text: 'Microwave'
+          , align: 'right'
+          , style: {
+              color: 'white'
+            , fontWeight: 'bold'
+            }
+          }
+        }
+      , {
+          value: 2500
+        , color: 'purple'
+        , dashStyle: 'shortdash'
+        , width: 2
+        , label: {
+            text: 'Tumble dryer'
+          , align: 'right'
+          , style: {
+              color: 'white'
+            , fontWeight: 'bold'
+            }
+          }
+        }
+      , {
+          value: 406
+        , color: 'purple'
+        , dashStyle: 'shortdash'
+        , width: 2
+        , label: {
+            text: 'Washing machine'
+          , align: 'right'
+          , style: {
+              color: 'white'
+            , fontWeight: 'bold'
+            }
+          }
+        }
+      ]
     }
 
   , series: [
       {
         name: 'Electricity usage (kWh)'
-      , type: 'area'
+      , type: 'areaspline'
       , data: []
       , gapSize: 5
       , tooltip: {
