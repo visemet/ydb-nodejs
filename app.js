@@ -35,7 +35,7 @@ app.get('/', routes.index);
 app.get('/demo/:no', demos.load);
 app.get('/demo/:no/stream', streams.load);
 
-app.post('/demo/:no', demos.update);
+app.post('/demo/:no/stream', streams.update);
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log("Express server listening on port " + app.get('port'));
