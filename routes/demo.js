@@ -19,5 +19,10 @@ function getScripts(demoNo) {
       '/javascripts/gray-visual-theme.js'
     , '/javascripts/moving-average.js'
     ];
+  case '2':
+    return [
+      '/javascripts/gray-visual-theme.js'
+    , '/javascripts/combined-moving-average.js'
+    ];
   }
 };
